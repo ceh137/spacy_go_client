@@ -1,2 +1,4 @@
 # spacy_go_client
-Golang Client for SpaCy Server
+## Go client For SpaCy Server
+
+Was tested with docker image of the server: jgontrum/spacyapi:en_v2
