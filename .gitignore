@@ -1,3 +1,4 @@
-./tmp/
+./tmp
 .air.toml
 out
+./.idea
