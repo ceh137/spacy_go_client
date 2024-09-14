@@ -60,6 +60,11 @@ Returns Sentences and Dependency parses
 
 ---
 
+### `sc.GetSents(text string)`
+Returns Sentences from text
+
+---
+
 ### `sc.GetEnts(text string)`
 Returns Entities found in text
 

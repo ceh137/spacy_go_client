@@ -5,35 +5,35 @@ import (
 	"strings"
 )
 
-type sendDepRequestBody struct {
+type sentDepRequestBody struct {
 	Text  string `json:"text"`
 	Model string `json:"model"`
 }
 
-type sendDepItem struct {
+type sentDepItem struct {
 	Sentence string          `json:"sentence"`
 	DepParse DepResponseType `json:"dep_parse"`
 }
 
-type SendDepResponseType = []sendDepItem
+type SentDepResponseType = []sentDepItem
 
-func (sc *SpacyClient) GetSentDeps(text string) (SendDepResponseType, error) {
+func (sc *SpacyClient) GetSentDeps(text string) (SentDepResponseType, error) {
 	url := sc.Url + "/sents_dep"
-	jsonToSend, err := convertToJson(sendDepRequestBody{
+	jsonToSend, err := convertToJson(sentDepRequestBody{
 		Text:  text,
 		Model: sc.Model,
 	})
 	if err != nil {
-		return SendDepResponseType{}, err
+		return SentDepResponseType{}, err
 	}
 	reader := strings.NewReader(string(jsonToSend))
 	response, err := http.Post(url, "application/json", reader)
 	if err != nil {
-		return SendDepResponseType{}, err
+		return SentDepResponseType{}, err
 	}
-	respBody, err := getDataFromJson[SendDepResponseType](response)
+	respBody, err := getDataFromJson[SentDepResponseType](response)
 	if err != nil {
-		return SendDepResponseType{}, err
+		return SentDepResponseType{}, err
 	}
 
 	return respBody, nil
